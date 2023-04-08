@@ -12,3 +12,7 @@ from core.models import Review
 class Index(ListView):
     model=Review
     template_name='core/index.html'
+
+class LeerReview(DetailView):
+    model=Review
+    template_name='core/leer_review.html'

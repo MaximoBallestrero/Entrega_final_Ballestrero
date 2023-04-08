@@ -17,5 +17,14 @@ Comparte y lee resenas de peliculas con personas de todo el mundo
 
 
 {%block contenido_central%}
-Hola, estoy verificando que ande herencia de templates.
+
+Aqui estan listadas todas las reseñas:
+<ul>
+{%for resena in object_list%}
+<li>
+    <p> <a href="{% url 'Leer-Review' resena.id %}"> Pelicula: {{resena.pelicula}} --- Titulo: {{resena.titulo}} --- Autor: {{resena.autor}} --- Fecha {{resena.fecha}} </a> </p>
+</li>
+{%endfor%}
+</ul>
+
 {%endblock%}

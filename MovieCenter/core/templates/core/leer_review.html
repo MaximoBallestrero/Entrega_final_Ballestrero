@@ -1,0 +1,43 @@
+{%extends 'core/base.html'%}
+
+
+{%block titulo%}
+Review {{review.id}}
+{%endblock%}
+
+
+{%block subtitulo%}
+Esta es la reseña nro. <i>{{review.id}}</i>, escrita por el usuario @<i>{{review.autor}}</i>
+{%endblock%}
+
+{%block descripcion%}
+Aca va ir un if; <br>
+if logged in:"Puedes escribir una reseña si inicias sesion" <br>
+else: "Apreta aqui para crear una reseña"
+{%endblock%}
+
+
+
+{%block contenido_central%}
+
+<br>
+<img src="{{review.poster.url}}" width='200px'>
+<h2>
+    Pelicula: <i>{{review.pelicula}}</i>
+    <br>
+    Titulo: <i>{{review.titulo}}</i>
+</h2>
+<h4>
+    Autor: <i>{{review.autor}}</i>
+    <br>
+    Fecha: <i>{{review.fecha}}</i>
+    <br>
+    Reseña:
+</h4>
+
+<p>{{review.texto}}</p>
+
+<a class="btn btn-primary" href="{% url 'Index'%}">Volver</a>
+<p><br></p>
+
+{%endblock%}

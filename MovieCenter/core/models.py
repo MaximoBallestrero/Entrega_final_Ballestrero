@@ -8,7 +8,7 @@ class Review(models.Model):
     titulo=models.CharField(max_length=80)
     texto=models.TextField()
     fecha=models.DateField()
-    poster=models.ImageField()
+    poster=models.ImageField(upload_to='posters', null=True, blank=True)
     autor=models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
