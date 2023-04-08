@@ -1,0 +1,38 @@
+{%extends 'core/base.html' %}
+
+{%block titulo%}
+Resultado
+{%endblock%}
+
+
+{%block subtitulo%}
+Estos son los resultados de tu busqueda
+{%endblock%}
+
+{%block descripcion%}
+
+{%endblock%}
+
+
+
+{%block contenido_central%}
+
+<h4>Estamos buscando: {{pelicula}}</h4>
+
+{% if reviews %}
+<h4>Encontramos los siguientes resultados:</h4>
+<ul>
+    {%for review in reviews%}
+        <li> <p> <a href="{% url 'Leer-Review' review.id %}"> Pelicula: {{review.pelicula}} --- Titulo: {{review.titulo}} --- Autor: {{review.autor}} --- Fecha {{review.fecha}} </a> </p>
+    {%endfor%}
+</ul>
+{%else%}
+<h4>No encontramos ninguna coincidencia.</h4>
+
+
+{%endif%}
+
+<a class="btn btn-primary" href="{% url 'Buscar'%}">Volver a buscar</a> <a class="btn btn-primary" href="{% url 'Index'%}">Volver al inicio</a>
+<p><br></p>
+
+{%endblock%}

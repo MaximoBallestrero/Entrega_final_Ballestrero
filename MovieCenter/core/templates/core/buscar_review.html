@@ -1,0 +1,28 @@
+{%extends 'core/base.html' %}
+
+{%block titulo%}
+Buscar
+{%endblock%}
+
+
+{%block subtitulo%}
+Aca puedes buscar reseñas de otras personas
+{%endblock%}
+
+{%block descripcion%}
+el mismo if situation que en leer review?
+{%endblock%}
+
+
+
+{%block contenido_central%}
+<h4>Busca el nombre de la pelicula de la reseña que quieres encontrar:</h4>
+<form action='/resultado-busqueda/' method='GET'>
+    {% csrf_token %}
+    <p>Pelicula: <input type='text' name='pelicula' id='pelicula'>
+    <input type='submit' value='Buscar'>
+</form>
+
+<a class="btn btn-primary" href="{% url 'Index'%}">Volver al inicio</a>
+<p><br></p>
+{%endblock%}
