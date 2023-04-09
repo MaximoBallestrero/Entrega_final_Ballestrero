@@ -11,9 +11,11 @@ Esta es la reseña nro. <i>{{review.id}}</i>, escrita por el usuario @<i>{{revie
 {%endblock%}
 
 {%block descripcion%}
-Aca va ir un if; <br>
-if logged in:"Puedes escribir una reseña si inicias sesion" <br>
-else: "Apreta aqui para crear una reseña"
+{%if request.user.is_authenticated%}
+Para crear una reseña clickea <a class="btn btn-primary" href="#crear">Aqui</a>
+{%else%}
+Para crear una reseña primero tienes que iniciar sesion <a class="btn btn-primary" href="{% url 'Login'%}">Aqui</a>
+{%endif%}
 {%endblock%}
 
 
