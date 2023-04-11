@@ -1,0 +1,58 @@
+{%extends 'core/base.html' %}
+
+{%block titulo%}
+Tu Perfil
+{%endblock%}
+
+
+{%block subtitulo%}
+Este es tu perfil
+{%endblock%}
+
+{%block contenido_central%}
+<h4>
+
+    <a class="btn btn-primary" href="{% url 'Editar-Perfil' %}">Editar Perfil</a>
+    <br>
+    Usuario: <i>{{request.user}}</i>
+    <br>
+    Email: {%if request.user.email%}
+    <i>{{request.user.email}}</i>
+    {%else%}
+    <i>Todavia no le agregaste un mail a tu usuario.</i>
+    {%endif%}
+    <br>
+    Avatar: {%if request.user.avatar%}
+    <img src="{{request.user.avatar.imagen.url}}" width='200px'>
+    {%else%}
+    <i>Todavia no le agregaste un avatar a tu usuario.</i>
+    {%endif%}
+    <br>
+    Bio:</h4> {%if request.user.descripcionusuario%}
+    {{request.user.descripcionusuario.bio}}
+    {%else%}
+    Todavia no agregaste una descripcion.
+    {%endif%}
+    
+
+
+
+<h4>
+    Estas son tus reseñas:
+</h4>
+
+{%if tus_reviews %}
+<ul>
+{%for review in tus_reviews%}
+<li>
+    <p> <a href="{% url 'Leer-Review' review.id %}"> Pelicula: {{review.pelicula}} --- Titulo: {{review.titulo}} --- Autor: {{review.autor}} --- Fecha {{review.fecha}} </a> </p>
+</li>
+{%endfor%}
+</ul>
+{%else%}
+Todavia no escribiste ninguna reseña.
+{%endif%}
+
+
+
+{%endblock%}

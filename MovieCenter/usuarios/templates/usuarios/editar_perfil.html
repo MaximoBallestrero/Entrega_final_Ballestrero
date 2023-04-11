@@ -1,0 +1,28 @@
+{%extends 'core/base.html' %}
+
+{%block titulo%}
+Editar Perfil
+{%endblock%}
+
+
+{%block subtitulo%}
+Estas editando tu perfil
+{%endblock%}
+
+{%block contenido_central%}
+
+
+<body>
+    Editar perfil de {{usuario}}
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <button type="submit">Guardar cambios</button>
+        
+    </form>
+</body>
+
+
+{%endblock%}

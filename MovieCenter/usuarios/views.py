@@ -1,14 +1,24 @@
 from django.shortcuts import render, redirect
 
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, logout, authenticate
+from django.views.generic.detail import DetailView
 
+#permisos de django
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
-from usuarios.forms import UserRegisterForm
+#mis forms
+from usuarios.forms import UserRegisterForm, UserEditForm
+
+#models
+from core.models import Review 
+from usuarios.models import Avatar, DescripcionUsuario
+
 
 # Create your views here.
+
 def login_request(request):
     mensaje=''
     if request.method=='POST':
@@ -45,3 +55,38 @@ def register(request):
     else:
         form=UserRegisterForm()
     return render(request, 'usuarios/register.html', {'form':form})
+
+
+@login_required
+def tu_perfil(request):
+    tus_reviews=Review.objects.filter(autor=request.user)
+    return render(request, 'usuarios/tu_perfil.html', {'tus_reviews':tus_reviews})
+
+
+@login_required
+def edit_perfil(request):
+    usuario=request.user
+    try:
+        desc=request.user.descripcionusuario.bio
+    except:
+        desc=DescripcionUsuario(user=usuario, bio='Contanos un poco de vos')
+    try:
+        avatar=request.user.avatar.imagen
+    except:
+        avatar=Avatar()
+    
+    if request.method=='POST':
+        form=UserEditForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            info=form.cleaned_data
+            usuario.email=info['email']
+            desc=DescripcionUsuario(user=usuario, bio=info['bio'])
+            avatar=Avatar(user=usuario,imagen=info['avatar'])
+            usuario.save()
+            desc.save()
+            avatar.save()
+            return redirect('Tu-Perfil')
+    else:
+        form=UserEditForm(initial={'email':usuario.email, 'bio':desc, 'avatar':avatar})
+    return render(request, 'usuarios/editar_perfil.html', {'form':form, 'usuario':usuario})
