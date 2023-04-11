@@ -17,6 +17,13 @@ Pasos:
 1: Pongo a andar el servidor.  
 2: Entro a la pagina para crear reviews. Y completo todos los campos menos el de imagen.  
 3: Trato de subir varios archivos (videos, archivos de python, html y mas)  
-Resultado: No me deja subir ningun archivo que no sea imagen :)
+Resultado: No me deja subir ningun archivo que no sea imagen :)  
+Caso 3:  
+Objetivo: ver que pasa si cambio el max_length del campo 'pelicula' de mi form para crear reviews con inspect  
+Pasos:  
+1: Pongo a andar el servidor.  
+2: Voy a la pagina para crear reviews. Pongo inspect, y voy a donde dice el max length del campo pelicula. Lo extiendo a 80 (es 40).  
+3: Veo que ahora me deja escribir mas de 40 caracteres.  
+4: Completo los otros campos y apreto el boton para crear reviews.
 
 
