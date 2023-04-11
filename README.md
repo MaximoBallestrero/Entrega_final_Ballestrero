@@ -24,6 +24,7 @@ Pasos:
 1: Pongo a andar el servidor.  
 2: Voy a la pagina para crear reviews. Pongo inspect, y voy a donde dice el max length del campo pelicula. Lo extiendo a 80 (es 40).  
 3: Veo que ahora me deja escribir mas de 40 caracteres.  
-4: Completo los otros campos y apreto el boton para crear reviews.
+4: Completo los otros campos y apreto el boton para crear reviews.  
+Resultado: A pesar de que en el campo me dejo escribir mas, cuando lo envio, no se guarda y me da un mensaje de error por la cantidad de caracteres de mas que puse.
 
 
