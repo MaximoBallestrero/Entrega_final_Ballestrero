@@ -1,17 +1,16 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
+#permisos
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 #class-based views
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
 #models
 from core.models import Review
 from django.contrib.auth.models import User
-
 #forms
 from core.forms import ReviewForm
 
@@ -60,8 +59,19 @@ def crear_review(request):
     return render(request, 'core/crear_review.html', {'form':form})
 
 
-class EditReview(UpdateView):
+class EditReview(LoginRequiredMixin, UpdateView):
     model=Review
     template_name='core/edit_review.html'
     success_url='/'
     fields=['pelicula', 'titulo', 'texto', 'fecha', 'poster']
+
+
+@login_required
+def eliminar_review(request, pk):
+    review=Review.objects.get(id=pk)
+    if request.user==review.autor:
+        review.delete()
+        msj=f'Se ha borrado la reseña nro {pk}'
+    else:
+        msj=f'No se borro la reseña nro {pk} porque usted no la ha escrito.'
+    return render(request, 'core/eliminar_review.html', {'msj':msj, 'id':pk})
