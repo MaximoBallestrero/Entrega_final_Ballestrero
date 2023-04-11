@@ -29,7 +29,7 @@ Este es tu perfil
     {%endif%}
     <br>
     Bio:</h4> {%if request.user.descripcionusuario%}
-    {{request.user.descripcionusuario.bio}}
+    {{request.user.descripcionusuario.bio|linebreaks}}
     {%else%}
     Todavia no agregaste una descripcion.
     {%endif%}
