@@ -39,6 +39,12 @@ Para crear una reseña primero tienes que iniciar sesion <a class="btn btn-prima
 
 <p>{{review.texto|linebreaks}}</p>
 
+{%if review.autor == request.user %}
+<a class="btn btn-primary" href="{% url 'Edit-Review' review.id %}">Editar</a>
+<a class="btn btn-primary" href="#borrar">Borrar</a>
+<p><br><br></p>
+{%endif%}
+
 <a class="btn btn-primary" href="{% url 'Index'%}">Volver</a>
 <p><br></p>
 

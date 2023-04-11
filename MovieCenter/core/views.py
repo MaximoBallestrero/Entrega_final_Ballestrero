@@ -58,3 +58,10 @@ def crear_review(request):
     else:
         form=ReviewForm()
     return render(request, 'core/crear_review.html', {'form':form})
+
+
+class EditReview(UpdateView):
+    model=Review
+    template_name='core/edit_review.html'
+    success_url='/'
+    fields=['pelicula', 'titulo', 'texto', 'fecha', 'poster']

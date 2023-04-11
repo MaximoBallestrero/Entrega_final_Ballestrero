@@ -1,0 +1,33 @@
+{%extends 'core/base.html'%}
+
+
+{%block titulo%}
+Editar Reseña {{review.id}}
+{%endblock%}
+
+
+{%block subtitulo%}
+Esta es la pagina para editar reseñas. 
+{%endblock%}
+
+
+{%block descripcion%}
+Estas editando la reseña nro. {{review.id}}
+{%endblock%}
+
+
+{%block contenido_central%}
+
+{%if review.autor == request.user%}
+<form method='POST' enctype="multipart/form-data">
+    {%csrf_token%}
+    {{form.as_p}}
+    <input type='submit' value='Guardar Cambios'>
+</form>
+{%else%}
+Esta no es tu reseña, entonces no puedes editarla.
+{%endif%}
+<p><br></p>
+<a class="btn btn-primary" href="{% url 'Index'%}">Volver al inicio</a>
+<p><br></p>
+{%endblock%}
