@@ -22,7 +22,7 @@
             <div class="container">
                 <h1 style="color:brown">MovieCenter</h1>
                 <a class="navbar-brand" href="{% url 'Index' %}">Inicio</a>
-                <a class="navbar-brand" href="#crear">Crear</a>
+                <a class="navbar-brand" href="{% url 'Crear-Review' %}">Crear</a>
                 <a class="navbar-brand" href="{% url 'Buscar' %}">Buscar</a>
                 <a class="navbar-brand" href="{% url 'Tu-Perfil' %}">Tu perfil</a>
                 {%if not request.user.is_authenticated%}

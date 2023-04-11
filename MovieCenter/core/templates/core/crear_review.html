@@ -1,0 +1,20 @@
+{%extends 'core/base.html'%}
+
+{%block titulo%}
+Crear Reseña
+{%endblock%}
+
+{%block subtitulo%}
+Esta es la pagina para crear reseñas.
+{%endblock%}
+
+
+{%block contenido_central%}
+<form method='POST' enctype="multipart/form-data">
+    {%csrf_token%}
+    {{form.as_p}}
+    <input type='submit' value='Subir Reseña'>
+</form>
+<p><br></p>
+<a class="btn btn-primary" href="{% url 'Index'%}">Volver</a>
+{%endblock%}
