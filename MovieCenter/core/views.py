@@ -75,3 +75,8 @@ def eliminar_review(request, pk):
     else:
         msj=f'No se borro la reseña nro {pk} porque usted no la ha escrito.'
     return render(request, 'core/eliminar_review.html', {'msj':msj, 'id':pk})
+
+
+
+def about(request):
+    return render(request, 'core/about.html')
