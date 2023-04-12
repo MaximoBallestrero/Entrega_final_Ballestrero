@@ -1,4 +1,5 @@
 Hola, aca dejo la entrega final.    
+Aca el link donde lo explico: https://youtu.be/xhwhlENzoFw  
 La verdad es que no sabia donde mas documentar los casos de prueba asi que los voy a dejar aca.    
 Caso 1:  
 Objetivo: Checkear que los Enters se muestren/guarden cuando lees un review, y en el bio de los usuarios.  
