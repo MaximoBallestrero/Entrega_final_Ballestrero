@@ -30,7 +30,13 @@ Para crear una reseña primero tienes que iniciar sesion <a class="btn btn-prima
     Titulo: <i>{{review.titulo}}</i>
 </h2>
 <h4>
-    Autor: <i>{{review.autor}}</i>
+    Autor: <a href=
+    {%if review.autor == request.user%}
+    "{% url 'Tu-Perfil' %}"
+    {%else%}
+    "{% url 'Get-Perfil' review.autor.id%}" 
+    {%endif%}
+    ><i>{{review.autor}}</i></a>
     <br>
     Fecha: <i>{{review.fecha}}</i>
     <br>

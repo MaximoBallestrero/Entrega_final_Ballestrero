@@ -1,0 +1,57 @@
+{%extends 'core/base.html' %}
+
+{%block titulo%}
+Perfil de {{usuario}}
+{%endblock%}
+
+
+{%block subtitulo%}
+Este es el perfil {{usuario}}
+{%endblock%}
+
+{%block contenido_central%}
+<h4>
+
+    <br>
+    Usuario: <i>{{usuario}}</i>
+    <br>
+    Email: {%if email%}
+    <i>{{email}}</i>
+    {%else%}
+    <i>Todavia no agrego un mail a su usuario.</i>
+    {%endif%}
+    <br>
+    Avatar: {%if avatar%}
+    <img src="{{avatar}}" width='200px'>
+    {%else%}
+    <i>Todavia no agrego un avatar a su usuario.</i>
+    {%endif%}
+    <br>
+    Bio:</h4> {%if bio%}
+    {{bio|linebreaks}}
+    {%else%}
+    Todavia no agregaste una descripcion.
+    {%endif%}
+    
+
+
+
+<h4>
+    Estas son las reseñas de {{usuario}}:
+</h4>
+
+{%if reviews %}
+<ul>
+{%for review in reviews%}
+<li>
+    <p> <a href="{% url 'Leer-Review' review.id %}"> Pelicula: {{review.pelicula}} --- Titulo: {{review.titulo}} --- Autor: {{review.autor}} --- Fecha {{review.fecha}} </a> </p>
+</li>
+{%endfor%}
+</ul>
+{%else%}
+Todavia no escribio ninguna reseña.
+{%endif%}
+
+
+
+{%endblock%}

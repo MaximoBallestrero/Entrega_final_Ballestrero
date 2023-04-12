@@ -90,3 +90,15 @@ def edit_perfil(request):
     else:
         form=UserEditForm(initial={'email':usuario.email, 'bio':desc, 'avatar':avatar})
     return render(request, 'usuarios/editar_perfil.html', {'form':form, 'usuario':usuario})
+
+
+
+def get_perfil(request, pk):
+    usuario=User.objects.get(id=pk)
+    email=usuario.email
+    avatar=Avatar.objects.filter(user=pk)
+    bio=DescripcionUsuario.objects.filter(user=pk)
+    reviews=Review.objects.filter(autor=pk)
+    return render(request, 'usuarios/get_perfil.html', {'usuario':usuario, "email":email, "avatar":avatar[0].imagen.url, "bio":bio[0], "reviews":reviews})
+
+
