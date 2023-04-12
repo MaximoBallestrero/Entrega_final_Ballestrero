@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
 from django.views.generic.detail import DetailView
+from django.views.generic import ListView
 
 #permisos de django
 from django.contrib.auth import login, logout, authenticate
@@ -92,7 +93,6 @@ def edit_perfil(request):
     return render(request, 'usuarios/editar_perfil.html', {'form':form, 'usuario':usuario})
 
 
-
 def get_perfil(request, pk):
     usuario=User.objects.get(id=pk)
     email=usuario.email
@@ -102,3 +102,18 @@ def get_perfil(request, pk):
     return render(request, 'usuarios/get_perfil.html', {'usuario':usuario, "email":email, "avatar":avatar[0].imagen.url, "bio":bio[0], "reviews":reviews})
 
 
+class Admin(LoginRequiredMixin, ListView):
+    model=User
+    template_name='usuarios/administrador.html'
+
+def eliminar_usuario(request, pk):
+    usuario=User.objects.get(id=pk)
+    if request.user.is_staff:
+        if request.user!=usuario:
+            usuario.delete()
+            msj=f'Se ha borrado el usuario {usuario}, nro de ID:{pk}.'
+        else:
+            msj=f'No puedes borrar tu propio usuario.'
+    else:
+        msj=f'No puedes borrar el usuario {usuario}, nro de ID:{pk}, porque usted no la ha escrito.'
+    return render(request, 'usuarios/eliminar_usuario.html', {'msj':msj})

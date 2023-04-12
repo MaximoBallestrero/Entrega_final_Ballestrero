@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv="X-UA-Compatible" content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Admin propio</title>
+</head>
+
+<body>
+    {%if request.user.is_staff%}
+    <h4>Esta es la pagina de Admin. Aqui puedes eliminar usuarios.</h4>
+    {%for usuario in object_list%}
+    <p>---{{usuario.id}} - {{usuario}} <a class="btn btn-primary" href="{% url 'Eliminar-Usuario' usuario.id %}">Borrar Usuario</a></p>
+    {%endfor%}
+
+    {%else%}
+    <h4>Usted no es staff, por lo tanto no tiene acceso al administrador.</h4>
+    {%endif%}
+    <br>
+    <a href="{% url 'Index' %}">Volver al inicio</a>
+</body>
+
+</html>

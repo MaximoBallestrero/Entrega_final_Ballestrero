@@ -25,6 +25,11 @@ class LeerReview(DetailView):
     model=Review
     template_name='core/leer_review.html'
 
+class EditReview(LoginRequiredMixin, UpdateView):
+    model=Review
+    template_name='core/edit_review.html'
+    success_url='/'
+    fields=['pelicula', 'titulo', 'texto', 'fecha', 'poster']
 
 
 #vistas basadas en funciones
@@ -59,13 +64,6 @@ def crear_review(request):
     return render(request, 'core/crear_review.html', {'form':form})
 
 
-class EditReview(LoginRequiredMixin, UpdateView):
-    model=Review
-    template_name='core/edit_review.html'
-    success_url='/'
-    fields=['pelicula', 'titulo', 'texto', 'fecha', 'poster']
-
-
 @login_required
 def eliminar_review(request, pk):
     review=Review.objects.get(id=pk)
@@ -77,6 +75,7 @@ def eliminar_review(request, pk):
     return render(request, 'core/eliminar_review.html', {'msj':msj, 'id':pk})
 
 
-
 def about(request):
     return render(request, 'core/about.html')
+
+

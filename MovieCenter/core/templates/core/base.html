@@ -71,7 +71,10 @@
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="{% url 'About' %}">About</a></li>
                             <li class="list-inline-item">⋅</li>
-                            
+                            {%if request.user.is_staff%}
+                            <li class="list-inline-item"><a href="{% url 'Administrador' %}">Admin</a></li>
+                            <li class="list-inline-item">.</li>
+                            {%endif%}
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; MovieCenter 2023. All Rights Reserved.</p>
                     </div>
